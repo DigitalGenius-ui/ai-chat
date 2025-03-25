@@ -35,7 +35,9 @@ export default function RootLayout({
           <StackTheme>
             <ConvexClientProvider>
               <Header />
-              {children}
+              <div className="w-[90%] md:w-[70%] mx-auto py-20 ">
+                {children}
+              </div>
             </ConvexClientProvider>
           </StackTheme>
         </StackProvider>

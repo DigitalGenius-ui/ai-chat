@@ -9,7 +9,7 @@ function Dashboard() {
   const { userData } = useContext(Context);
 
   return (
-    <section className="w-[90%] md:w-[70%] mx-auto py-20 space-y-7">
+    <section className="space-y-7">
       <div className="md:flex items-center justify-between">
         <div>
           <p className="text-gray-700 text-lg font-medium">My Workspace</p>

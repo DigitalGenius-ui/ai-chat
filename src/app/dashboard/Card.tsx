@@ -19,26 +19,8 @@ import Image from "next/image";
 import { useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { LoaderCircle } from "lucide-react";
-
-type coatchType = {
-  name: string;
-  img: string;
-};
-
-const coachingExpert: coatchType[] = [
-  {
-    name: "Joanna",
-    img: "/t1.png",
-  },
-  {
-    name: "Salli",
-    img: "/t2.png",
-  },
-  {
-    name: "Joey",
-    img: "/t3.png",
-  },
-];
+import { useRouter } from "next/navigation";
+import { coachingExpert, coatchType } from "./data";
 
 type CardType = {
   item: {
@@ -50,6 +32,7 @@ type CardType = {
 
 function Card({ item, index }: CardType) {
   const [openDialog, setOpenDialog] = useState(false);
+  const router = useRouter();
   const [selectCoatch, setSelectCoatch] = useState<coatchType>(
     {} as coatchType
   );
@@ -57,6 +40,7 @@ function Card({ item, index }: CardType) {
   const [loading, setLoading] = useState(false);
 
   const createDiscussion = useMutation(api.discussion.createDiscussion);
+
   const handleNext = async () => {
     if (!topic || !selectCoatch.name) return;
     setLoading(true);
@@ -67,6 +51,7 @@ function Card({ item, index }: CardType) {
         expertName: selectCoatch.name,
       });
       console.log(result);
+      router.push("/discussion-room/" + result.discussionId);
     } catch (error) {
       console.log(error);
       throw new Error("Error creating discussion");

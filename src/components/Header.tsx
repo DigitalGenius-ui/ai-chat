@@ -21,10 +21,11 @@ export default function Header() {
             alt="logo"
             width={150}
             height={150}
-            style={{ objectFit: "contain" }}
+            style={{ objectFit: "contain", height: "auto", width: "auto" }}
+            priority
           />
         </Link>
-        {path === "/dashboard" ? (
+        {path !== "/" ? (
           <UserButton />
         ) : (
           <Link href={userData ? "/dashboard" : "/handler/sign-up"}>
